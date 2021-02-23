@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+:root {
+  --paradise-pink: #ef476fff;
+  --orange-yellow-crayola: #ffd166ff;
+  --caribbean-green: #06d6a0ff;
+  --blue-ncs: #118ab2ff;
+  --midnight-green-eagle-green: #073b4cff;
+  --bordered: 2px solid red;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.app {
+  width: 90%;
+  height: 90%;
+}
+
+.message {
+  font-size: 5vw;
+  height: 10%;
+}
+
+@media only screen and (min-width: 600px) {
+  .books-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .book-preview {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .book-preview {
+    width: 33%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .book-preview {
+    width: 25%;
+  }
+}
+
+.collapse-button {
+  float: right;
+}
+
+.book-preview a {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5em;
+  height: 300px;
+}
+
+.book-preview-details-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.book-preview-thumbnail img {
+  max-width: 128px;
+  border: 1px solid black;
+}
+
+.book-preview-details {
+  text-align: center;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+}
+
+.back-button {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  float: right;
+}

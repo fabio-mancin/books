@@ -1,70 +1,181 @@
-# Getting Started with Create React App
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br />
+<p align="center">
+  <a href="https://github.com/fabio-mancin/recycle">
+    <img src="public/images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-## Available Scripts
+  <h3 align="center">Recycle</h3>
 
-In the project directory, you can run:
+  <p align="center">
+    PHP/Laravel web app that helps tracking garbage recycling days and times.
+    <br />
+    <br />
+    <a href="https://github.com/fabio-mancin/recycle">View Demo</a>
+    ·
+    <a href="https://github.com/fabio-mancin/recycle/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/fabio-mancin/recycle/issues">Request Feature</a>
+  </p>
+</p>
 
-### `npm start`
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About The Project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Product Name Screen Shot](public/images/main.png)
 
-### `npm test`
+This is a simple web app developed with PHP/Laravel that I built for a start2Impact course project; it is my first PHP web app, so mistakes are extremely likely! I'd love to get your feedback :)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Built With
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [PHP](https://www.php.net/)
+* [Laravel](http://laravel.com/)
+* [NodeJS](https://nodejs.org/en/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get a local copy up and running follow these simple steps.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* PHP Environment (Apache, PHP, MySQL). I used PHP 7.4.9, MySQL 8, Apache 2.4; retrocompatibility not guaranteed. Depending on your OS your installation might vary; I used [WAMP](https://www.wampserver.com/) on Windows for a quick and effortless setup.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [Composer](https://getcomposer.org/): depending on your OS follow the instructions on the official website.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Installation
 
-## Learn More
+1. Clone the repo and cd to its root directory
+   ```sh
+   git clone https://github.com/fabio-mancin/recycle.git
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   cd recycle
+   ```
+2. Install composer dependencies
+   ```sh
+   composer install
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+5. Copy ".env.example" from the root folder and rename the copy to ".env".
+   ```sh
+   cp .env.example .env
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. Generate an app encryption key
+   ```sh
+   php artisan key:generate
+   ```
+7. Create an empty database: depending on your setup and system this may vary; you can refer to the [official documentation](https://dev.mysql.com/doc/refman/8.0/en/creating-database.html) or follow the instruction for the software you are using to handle MySQL. The name doesn't matter, I called mine "recycle" for consistency.
 
-### Code Splitting
+8. Update .env with your database connection settings in order to give the app access to it. In the .env file fill in the DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, and DB_PASSWORD options to match the credentials of the database you just created.
+   ```sh
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE= yourDatabaseName
+   DB_USERNAME= yourRootUsername
+   DB_PASSWORD= yourPassword
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+9. Run migrations:
+   ```sh
+   php artisan migrate
+   ```
 
-### Analyzing the Bundle Size
+10. Run the server and open the url you are serving it to on your browswer, usually http://127.0.0.1:8000.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    ```sh
+    php artisan serve
+    ```
 
-### Making a Progressive Web App
+<!-- USAGE EXAMPLES -->
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+On startup the application will guide you through the initial setup: garbage collection days, garbage types and finally garbage collection times.
 
-### Advanced Configuration
+The app will then show the main page with the recycle days recap. You can delete existing collections from it. In addition, you can re-enter setup.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Days and garbage types can be added, modified and removed through the setup.
 
-### Deployment
+## Roadmap
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+See the [open issues](https://github.com/fabio-mancin/recycle/issues) for a list of proposed features (and known issues).
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Your Name - [@fabio__mancio](https://twitter.com/fabio__mancio) - fabio.mancin90@gmail.com
+
+Project Link: [https://github.com/fabio-mancin/recycle](https://github.com/fabio-mancin/recycle)
+
+Website: [fabiomancin.org](https://fabiomancin.org)
+
+## Acknowledgements
+
+* [start2impact](start2impact.it)
+* [recycling.com](https://www.recycling.com/)
+* [clockwork](https://underground.works/clockwork/)
+
+[contributors-shield]: https://img.shields.io/github/contributors/fabio-mancin/recycle.svg?style=for-the-badge
+[contributors-url]: https://github.com/fabio-mancin/recycle/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/fabio-mancin/recycle.svg?style=for-the-badge
+[forks-url]: https://github.com/fabio-mancin/recycle/network/members
+[stars-shield]: https://img.shields.io/github/stars/fabio-mancin/recycle.svg?style=for-the-badge
+[stars-url]: https://github.com/fabio-mancin/recycle/stargazers
+[issues-shield]: https://img.shields.io/github/issues/fabio-mancin/recycle.svg?style=for-the-badge
+[issues-url]: https://github.com/fabio-mancin/recycle/issues
+[license-shield]: https://img.shields.io/github/license/fabio-mancin/recycle.svg?style=for-the-badge
+[license-url]: https://github.com/fabio-mancin/recycle/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/fabio-mancin
