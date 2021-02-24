@@ -36,6 +36,21 @@
   .book-preview {
     width: 50%;
   }
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .form-group {
+    width: 60%;
+  }
+  .search-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
 
 @media only screen and (min-width: 900px) {

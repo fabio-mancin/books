@@ -52,14 +52,16 @@
 
 ## About The Project
 
-![Product Name Screen Shot](public/images/main.png)
+![Product Name Screen Shot](public/screenshot.png)
 
-#TODO
+Simple React Web App meant to show the React functionality. Features like Context API and react-router shouldn't have been used since simple states and props were enough, but I wanted to show a basic use for them too.
+
+The app itself uses the Google Books API to search for books in the database.
 
 
 ### Built With
 
-* <!-- [PHP](https://www.php.net/)
+* [React](https://reactjs.org/)
 
 ## Getting Started
 
@@ -67,16 +69,21 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-* #TODO
+* [NodeJS](https://nodejs.org/en/)
+* [Google API Key](https://cloud.google.com/docs/authentication/api-keys)
 
 ### Installation
 
-1. #TODO
+1. Remember to enable your key in the Books API in [Google Cloud Platform](https://console.cloud.google.com/apis/library/books.googleapis.com)
+2. Download source and open a command prompt in its folder.
+3. `npm install`
+4. Rename `.env.example` to `.env` and put your API key between the brackets.
+5. `npm start`
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-#TODO
+There isn't much to explain: use the form to search for entries; you can expand it with the Advanced Search feature. Each preview is a link to a more detailed page.
 
 ## Roadmap
 
