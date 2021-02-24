@@ -9,7 +9,7 @@ import {divide} from "lodash"
 function Search(props) {
 
     const SearchResultsContext = useContext(searchResultsContext)
-
+    
     const [open,
         setOpen] = useState(false);
 
@@ -58,7 +58,7 @@ function Search(props) {
                     </div>
                 </Collapse>
             </Form.Group>
-                <div className="search-buttons">
+            <div className="search-buttons">
                 <Button onClick={SearchResultsContext.onClick}>
                     <FontAwesomeIcon icon={faSearch}/>
                     <span>
@@ -74,6 +74,12 @@ function Search(props) {
                         ? "Basic Search"
                         : "Advanced Search"}
                 </Button>
+                {(parseInt(SearchResultsContext.state.totalItems) - parseInt(SearchResultsContext.state.startIndex) <= 10)
+                    ? ""
+                    : <Button variant="warning" onClick={SearchResultsContext.nextPage}>
+                        Next
+                    </Button>}
+
             </div>
         </Form>
     )

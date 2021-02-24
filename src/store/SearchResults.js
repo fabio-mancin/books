@@ -9,6 +9,8 @@ function SearchResults(props) {
         inauthor: "",
         inpublisher: "",
         insubject: "",
+        startIndex: 0,
+        totalItems: "",
         searchResults: [],
         loading: false
     }
@@ -25,6 +27,15 @@ function SearchResults(props) {
         });
     }
 
+    const nextPage = () => {
+        setState({
+            ...state,
+            startIndex: state.startIndex+=10
+        });
+        
+        onClick()
+    }
+
     const onClick = () => {
         let query = ""
 
@@ -34,35 +45,41 @@ function SearchResults(props) {
         });
 
         for (let key in state) {
-            if (state[key] !== "" && key !== "searchResults" && key !== "loading") 
+            if (state[key] !== "" && key !== "searchResults" && key !== "loading" && key !== "startIndex" && key !== "totalItems") 
                 query += `+${key}:${state[key]}`
         }
         
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query.substring(1)}`, {
-                params: {
-                    key: process.env.REACT_APP_API_KEY
-                }
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query.substring(1)}&startIndex=${state.startIndex}`, {
+            params: {
+                key: process.env.REACT_APP_API_KEY
+            }
+        })
+        .then(function (response) {
+            const result = _.get(response, "data")
+            setState({
+                ...state,
+                searchResults: result.items,
+                totalItems: result.totalItems,
+                loading: false,
             })
-            .then(function (response) {
-                const items = _.get(response, "data.items")
-                setState({
-                    ...state,
-                    searchResults: items,
-                    loading: false
-                });
-            })
-            .catch(function (error) {
-                console.error(error);
-            });
+            console.log(result)
+        })
+        .catch(function (error) {
+            console.error(error);
+        });
+
         query = ""
+        
     }
+
     return (
         <SearchResultsContext.Provider
             value={{
-            state: state,
-            onClick: onClick,
-            onChange: onChange
-        }}>
+                    state: state,
+                    onClick: onClick,
+                    onChange: onChange,
+                    nextPage: nextPage
+                }}>
             {props.children}
         </SearchResultsContext.Provider>
     );

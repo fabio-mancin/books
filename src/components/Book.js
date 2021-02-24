@@ -5,7 +5,7 @@ function Book(props) {
     const data = props.info
     return (
         <div className="book">
-            <img src={data.imageLinks !== undefined ? data.imageLinks.thumbnail : error404}></img>
+            <img class="book-detail-img" src={data.imageLinks !== undefined ? data.imageLinks.thumbnail : error404}></img>
             <p>Title: <strong>{data.title}</strong></p>
             <p>Subtitle: <strong>{data.subtitle}</strong></p>
             <p>Author(s): <strong>{data.authors}</strong></p>

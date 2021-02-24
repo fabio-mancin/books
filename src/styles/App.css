@@ -46,11 +46,6 @@
   .form-group {
     width: 60%;
   }
-  .search-buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -65,8 +60,10 @@
   }
 }
 
-.collapse-button {
-  float: right;
+.search-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .book-preview a {
@@ -96,10 +93,16 @@
 .book {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .back-button {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   float: right;
+}
+
+.book-detail-img {
+  max-width: 600px;
 }
