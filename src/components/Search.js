@@ -9,6 +9,7 @@ import SearchButtons from "./SearchButtons"
 
 import searchResultsContext from "../store/SearchResultsContext"
 
+//renders the form
 function Search() {
 
     const SearchResultsContext = useContext(searchResultsContext)

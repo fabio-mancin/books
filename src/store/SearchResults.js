@@ -2,7 +2,9 @@ import {React, useState, useEffect, useRef} from 'react'
 import SearchResultsContext from './SearchResultsContext';
 import Helpers from "./Helpers"
 
+/* Provider for most the data in the app. API calls happen here and the result gets passed to all components via Context API */
 function SearchResults(props) {
+    //https://reactjs.org/docs/hooks-faq.html#can-i-run-an-effect-only-on-updates
     const isInitialMount = useRef(true);
 
     const [state,
@@ -26,7 +28,9 @@ function SearchResults(props) {
         });
     }
 
+    //API calls for the next and prev buttons
     useEffect(() => {
+        //see line 7
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
@@ -43,6 +47,7 @@ function SearchResults(props) {
         }
     }, [state.startIndex]);
 
+    //handles next and prev buttons
     const changePage = (operand) => {
         setState({
             ...state,
@@ -51,6 +56,7 @@ function SearchResults(props) {
         })
     }
 
+    //API call for the main search
     const onClick = () => {
 
         setState({

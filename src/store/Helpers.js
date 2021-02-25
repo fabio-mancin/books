@@ -2,6 +2,8 @@ import axios from 'axios'
 import _ from 'lodash'
 
 const Helpers = {
+
+    //returns a list of books from the api
     getList: async (query, startIndex) => {
         try {
             const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}&startIndex=${startIndex}`, {
@@ -16,6 +18,7 @@ const Helpers = {
         }
     },
 
+    //generates a string that will be used as query
     makeQuery: (state) => {
         let query = ""
 
@@ -33,6 +36,7 @@ const Helpers = {
         return value -= 10
     },
 
+    //returns the details of a book
     getId: async (id) => {
         try {
             const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`, {

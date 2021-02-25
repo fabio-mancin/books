@@ -7,11 +7,14 @@ import {useMediaQuery} from 'react-responsive'
 
 const SearchButtons = () => {
     const SearchResultsContext = useContext(searchResultsContext)
+    //hacky way to know if the app will show the pagination buttons or not
     const enableNextButton = (parseInt(SearchResultsContext.state.totalItems) - parseInt(SearchResultsContext.state.startIndex) >= 10)
     const enablePrevButton = SearchResultsContext.state.startIndex >= 10
+    //changing from text to icons when on mobile
     const isMobile = useMediaQuery({query: '(max-device-width: 600px)'})
 
     return (
+        /* https://reactjs.org/docs/fragments.html#short-syntax */
         <> 
             {enablePrevButton
                 ? <Button
