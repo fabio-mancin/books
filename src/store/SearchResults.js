@@ -32,17 +32,16 @@ function SearchResults(props) {
         if (isInitialMount.current) {
             isInitialMount.current = false;
         } else {
-            const query = Helpers.makeQuery(state)
-            Helpers
-                .getList(query, state.startIndex)
-                .then((response) => {
-                    setState({
-                        ...state,
-                        searchResults: response.items,
-                        totalItems: response.totalItems,
-                        loading: false
-                    })
+            (async() => {
+                const query = Helpers.makeQuery(state)
+                const response = await Helpers.getList(query, state.startIndex)
+                setState({
+                    ...state,
+                    searchResults: response.items,
+                    totalItems: response.totalItems,
+                    loading: false
                 })
+            })();
         }
     }, [state.startIndex]);
 
@@ -62,15 +61,24 @@ function SearchResults(props) {
             loading: true
         });
 
-        Helpers.getList(Helpers.makeQuery(state), 0).then((response) => {
+        /*Helpers.getList(Helpers.makeQuery(state), 0).then((response) => {
             setState({
                 ...state,
                 searchResults: response.items,
                 totalItems: response.totalItems,
                 loading: false
             })
-            console.log(state)
-        })
+        })*/
+
+        (async() => {
+            const response = await Helpers.getList(Helpers.makeQuery(state), 0)
+            setState({
+                ...state,
+                searchResults: response.items,
+                totalItems: response.totalItems,
+                loading: false
+            })
+        })();
 
     }
 

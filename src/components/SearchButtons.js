@@ -11,29 +11,31 @@ const SearchButtons = () => {
     const enablePrevButton = SearchResultsContext.state.startIndex >= 10
     const isMobile = useMediaQuery({query: '(max-device-width: 600px)'})
 
-    return (<> 
-        {enablePrevButton
-            ? <Button
-                    variant="warning"
-                    onClick={() => SearchResultsContext.changePage("subtract")}>
-                    {isMobile ? <FontAwesomeIcon icon={faBackward}/> : "Prev"}
-                </Button>
-            : ""
-        }
-        {enableNextButton
-            ?   <Button
-                    variant="warning"
-                    onClick={() => SearchResultsContext.changePage("add")}>
-                    {isMobile ? <FontAwesomeIcon icon={faForward}/> : "Next"}
-                </Button>
-            :    ""
+    return (
+        <> 
+            {enablePrevButton
+                ? <Button
+                        variant="warning"
+                        onClick={() => SearchResultsContext.changePage("subtract")}>
+                        {isMobile ? <FontAwesomeIcon icon={faBackward}/> : "Prev"}
+                    </Button>
+                :   ""}
+
+            {enableNextButton
+                ?   <Button
+                        variant="warning"
+                        onClick={() => SearchResultsContext.changePage("add")}>
+                        {isMobile ? <FontAwesomeIcon icon={faForward}/> : "Next"}
+                    </Button>
+                :   ""} 
+
+            <Button onClick = {SearchResultsContext.onClick} > 
+                <FontAwesomeIcon icon={faSearch}/>
+                {isMobile ? "" : <span> Search </span>} 
+            </Button> 
             
-        } 
-        <Button onClick = {SearchResultsContext.onClick} > 
-            <FontAwesomeIcon icon={faSearch}/>
-            {isMobile ? "" : <span> Search </span>} 
-        </Button> 
-        </>)
+        </>    
+    )
 }
 
 export default SearchButtons

@@ -28,12 +28,6 @@
   height: 10%;
 }
 
-@media only screen and (max-width: 600px) {
-  .btn {
-    /*padding: 0.1em !important;*/
-  }
-}
-
 @media only screen and (min-width: 601px) {
   .books-list {
     display: flex;
@@ -111,4 +105,9 @@
 
 .book-detail-img {
   max-width: 600px;
+}
+
+.loading-icon {
+  width: 100%;
+  text-align: center;
 }
