@@ -1,17 +1,22 @@
 import {React, useContext, useState} from "react"
-import searchResultsContext from "../store/SearchResultsContext"
+import {useMediaQuery} from 'react-responsive'
 import {Form, Button, Collapse} from 'react-bootstrap'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faSearch} from '@fortawesome/free-solid-svg-icons'
-import Message from './Message'
-import {divide} from "lodash"
+import {faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons'
 
-function Search(props) {
+import Message from './Message'
+import SearchButtons from "./SearchButtons"
+
+import searchResultsContext from "../store/SearchResultsContext"
+
+function Search() {
 
     const SearchResultsContext = useContext(searchResultsContext)
-    
+
     const [open,
         setOpen] = useState(false);
+
+    const isMobile = useMediaQuery({query: '(max-device-width: 600px)'})
 
     return (
 
@@ -59,11 +64,6 @@ function Search(props) {
                 </Collapse>
             </Form.Group>
             <div className="search-buttons">
-                <Button onClick={SearchResultsContext.onClick}>
-                    <FontAwesomeIcon icon={faSearch}/>
-                    <span>
-                        Search</span>
-                </Button>
                 <Button
                     className="collapse-button"
                     variant="secondary"
@@ -71,15 +71,10 @@ function Search(props) {
                     aria-controls="collapse-container"
                     aria-expanded={open}>
                     {open === true
-                        ? "Basic Search"
-                        : "Advanced Search"}
+                        ? isMobile ? <FontAwesomeIcon icon={faCaretUp}/> : "Basic Search" 
+                        : isMobile ? <FontAwesomeIcon icon={faCaretDown}/> : "Advanced Search" }
                 </Button>
-                {(parseInt(SearchResultsContext.state.totalItems) - parseInt(SearchResultsContext.state.startIndex) <= 10)
-                    ? ""
-                    : <Button variant="warning" onClick={SearchResultsContext.nextPage}>
-                        Next
-                    </Button>}
-
+                <SearchButtons/>
             </div>
         </Form>
     )
