@@ -77,7 +77,7 @@ To get a local copy up and running follow these simple steps.
 1. Remember to enable your key in the Books API in [Google Cloud Platform](https://console.cloud.google.com/apis/library/books.googleapis.com)
 2. Download source and open a command prompt in its folder.
 3. `npm install`
-4. Rename `.env.example` to `.env` and put your API key between the brackets.
+4. Rename `.env.example` to `.env` and put your API key between the quotation marks.
 5. `npm start`
 
 <!-- USAGE EXAMPLES -->
