@@ -1,8 +1,6 @@
 import {React, useState, useEffect, useRef} from 'react'
 import SearchResultsContext from './SearchResultsContext';
 import Helpers from "./Helpers"
-import axios from 'axios'
-import _ from 'lodash'
 
 function SearchResults(props) {
     const isInitialMount = useRef(true);
@@ -60,15 +58,6 @@ function SearchResults(props) {
             startIndex: 0,
             loading: true
         });
-
-        /*Helpers.getList(Helpers.makeQuery(state), 0).then((response) => {
-            setState({
-                ...state,
-                searchResults: response.items,
-                totalItems: response.totalItems,
-                loading: false
-            })
-        })*/
 
         (async() => {
             const response = await Helpers.getList(Helpers.makeQuery(state), 0)
